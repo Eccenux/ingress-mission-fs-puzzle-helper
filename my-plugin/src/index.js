@@ -10,6 +10,4 @@ if(typeof window.plugin !== 'function') window.plugin = function() {};
 //use own namespace for plugin
 window.plugin.missionFsPuzzleHelper = myPlugin;
 
-//window.plugin.missionFsPuzzleHelper.setup();
-
-console.log('missionFsPuzzleHelper - test', angular, window.angular, unsafeWindow.angular);
+window.plugin.missionFsPuzzleHelper.setup();

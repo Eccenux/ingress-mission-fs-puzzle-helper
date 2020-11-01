@@ -20,6 +20,10 @@ class MyPlugin {
 
 	setup() {
 		console.log('MyPlugin setup', this.codeName);
+
+		var waypointsContainer = document.querySelector('#waypoints');
+		var playerName = document.querySelector('.navbar-login a')?.textContent?.trim();
+		console.log(this.codeName, {waypointsContainer, playerName});
 	}
 }
 /* eslint-disable no-undef */
@@ -34,6 +38,4 @@ if(typeof window.plugin !== 'function') window.plugin = function() {};
 //use own namespace for plugin
 window.plugin.missionFsPuzzleHelper = myPlugin;
 
-//window.plugin.missionFsPuzzleHelper.setup();
-
-console.log('missionFsPuzzleHelper - test', angular, window.angular, unsafeWindow.angular);
+window.plugin.missionFsPuzzleHelper.setup();
