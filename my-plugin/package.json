@@ -1,24 +1,19 @@
 {
-	"name": "iitc-plugin--nux-termplate",
+	"name": "ingress-mission-fs-puzzle-helper",
 	"version": "0.0.1",
-	"description": "[0.0.1] Nux template",
+	"description": "[0.0.1] FS Puzzle helper for Mission Editor",
 	"author": "Eccenux",
 	"license": "MIT",
 	"main": "index.js",
 	"monkeyscript": {
 		"meta": {
-			"name": "IITC plugin: Nux termplate",
+			"name": "FS Puzzle helper for Mission Editor",
 			"category": "Misc",
-			"id": "iitc-plugin--nux-termplate",
-			"namespace": "pl.enux.iitc",
+			"id": "ingress-mission-fs-puzzle-helper",
+			"namespace": "pl.enux.ingress",
 			"grant": ["none"],
 			"match": [
-				"https://*.ingress.com/intel*",
-				"http://*.ingress.com/intel*",
-				"https://*.ingress.com/mission/*",
-				"http://*.ingress.com/mission/*",
-				"https://intel.ingress.com/*",
-				"https://intel.ingress.com/*"
+				"https://missions.ingress.com/edit*"
 			]
 		}
 	},
