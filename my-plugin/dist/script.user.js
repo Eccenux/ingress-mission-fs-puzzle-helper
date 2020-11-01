@@ -10,20 +10,76 @@
 // @grant       none
 // ==/UserScript==
 
+/* global angular */
+
+/**
+ * Angular helper.
+ * 
+ * AngularJS 1.2 compat.
+ */
+// eslint-disable-next-line no-unused-vars
+class AngularHelper {
+	/**
+	 * Wait for Angular scope initialization.
+	 * 
+	 * @param {String} selector Element selector.
+	 * @param {Function} callback Function to call when Angular scope is ready.
+	 */
+	static waitForScope(selector, callback) {
+		let checkInterval = 500;
+		let intervalId = setInterval(() => {
+			// console.log('waitForScope:', selector);
+			var viewsContainer = document.querySelector(selector);
+			let scope = angular.element(viewsContainer).scope();
+			if (scope) {
+				// console.log('waitForScope done');
+				clearInterval(intervalId);
+				callback(scope);
+			}
+		}, checkInterval);
+	}
+}
+/* global angular AngularHelper */
+
 /**
  * Main plugin class.
  */
+// eslint-disable-next-line no-unused-vars
 class MyPlugin {
-	constructor (codeName) {
+	constructor(codeName) {
 		this.codeName = codeName;
+		this.playerName = '';
 	}
 
 	setup() {
 		console.log('MyPlugin setup', this.codeName);
 
-		var waypointsContainer = document.querySelector('#waypoints');
-		var playerName = document.querySelector('.navbar-login a')?.textContent?.trim();
-		console.log(this.codeName, {waypointsContainer, playerName});
+		this.setupPlayer();
+
+		AngularHelper.waitForScope('body > .container', (scope) => {
+			this.setupViews(scope);
+		});
+	}
+
+	/**
+	 * Hook into view scope.
+	 * @param {Object} scope Angular scope.
+	 */
+	setupViews(scope) {
+		console.log(this.codeName, 'setupViews', scope, scope.setSelectedWaypoint);
+	}
+
+
+	/**
+	 * Setup player data.
+	 */
+	setupPlayer() {
+		try {
+			let scope = angular.element(document.body).scope();
+			this.playerName = scope.user.nickname;
+		} catch (e) {
+			console.warn(this.codeName, 'Unable to setup player.', e.message);
+		}
 	}
 }
 /* eslint-disable no-undef */
