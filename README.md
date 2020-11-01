@@ -1,13 +1,13 @@
-# IITC plugin: {name}
+# FS Puzzle helper for Mission Editor
 
-{base-description}
+Experimental FS Puzzle helper for Mission Editor.
 
 See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories).
 
 Installation
 ------------
 
-Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/{repo-name}/raw/master/my-plugin/dist/script.user.js)**.
+Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/ingress-mission-fs-puzzle-helper/raw/master/my-plugin/dist/script.user.js)**.
 
 Development
 ------------
