@@ -1,4 +1,4 @@
-/* global angular AngularHelper */
+/* global angular AngularHelper Portal */
 
 /**
  * Main plugin class.
@@ -22,11 +22,14 @@ class MyPlugin {
 
 	/**
 	 * When portal was selected.
-	 * @param {Object} portal Selected portal POI data.
+	 * @param {Object} rawPortal Selected portal POI data.
 	 */
-	onSelectedPortal(portal) {
-		console.log(this.codeName, 'onSelectedPortal', portal);
-		console.log(portal.title, this.playerName, portal.location.latitude, portal.location.longitude);
+	onSelectedPortal(rawPortal) {
+		console.log(this.codeName, 'onSelectedPortal', rawPortal);
+		let portal = new Portal(rawPortal);
+		let puzzleData = portal.puzzleData(this.playerName);
+		//console.log(portal.title, this.playerName, portal.location.latitude, portal.location.longitude);
+		console.log(puzzleData);
 	}
 
 	/**
