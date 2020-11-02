@@ -18,6 +18,13 @@ class MyPlugin {
 		AngularHelper.waitForScope('body > .container', (scope) => {
 			this.setupViews(scope);
 		});
+
+		// prepare input
+		let el = document.createElement('li');
+		this.input = document.createElement('input');
+		el.appendChild(this.input);
+		let container = document.querySelector('ul.navbar-nav');
+		container.insertBefore(el, container.firstChild);
 	}
 
 	/**
@@ -30,6 +37,7 @@ class MyPlugin {
 		let puzzleData = portal.puzzleData(this.playerName);
 		//console.log(portal.title, this.playerName, portal.location.latitude, portal.location.longitude);
 		console.log(puzzleData);
+		this.input.value = puzzleData;
 	}
 
 	/**
