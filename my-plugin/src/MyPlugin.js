@@ -45,14 +45,45 @@ class MyPlugin {
 	 * @param {Object} scope Angular scope.
 	 */
 	setupViews(scope) {
-		console.log(this.codeName, 'setupViews', scope.setSelectedWaypoint);
-		var previous = scope.setSelectedWaypoint;
+		console.log(this.codeName, 'setupViews');
+
+		// select added waypoint
+		if (typeof scope.setSelectedWaypoint != 'function') {
+			console.warn(this.codeName, 'scope.setSelectedWaypoint not a function!');
+		}
+		var origSetSelected = scope.setSelectedWaypoint;
 		scope.setSelectedWaypoint = (waypoint, d) => {
 			//console.log(this.codeName, 'hacked setSelectedWaypoint', {waypoint, d});
 			if (waypoint && waypoint.poi_type && waypoint.poi_type == "PORTAL") {
 				this.onSelectedPortal(waypoint._poi);
 			}
-			previous.call(scope, waypoint, d);
+			origSetSelected.call(scope, waypoint, d);
+		};
+
+		// select image fo added waypoint
+		if (typeof scope.toggleSelectedPOI != 'function') {
+			console.warn(this.codeName, 'scope.toggleSelectedPOI not a function!');
+		}
+		var origToggleSelected = scope.toggleSelectedPOI;
+		scope.toggleSelectedPOI = (_poi) => {
+			console.log(this.codeName, 'hacked toggleSelectedPOI', {_poi});
+			if (_poi && _poi.type && _poi.type == "PORTAL") {
+				this.onSelectedPortal(_poi);
+			}
+			origToggleSelected.call(scope, _poi);
+		};
+		
+		// select POI on map or search results
+		if (typeof scope.setSelectedPOI != 'function') {
+			console.warn(this.codeName, 'scope.setSelectedPOI not a function!');
+		}
+		var origsetSelectedPOI = scope.setSelectedPOI;
+		scope.setSelectedPOI = (_poi) => {
+			console.log(this.codeName, 'hacked setSelectedPOI', {_poi});
+			if (_poi && _poi.type && _poi.type == "PORTAL") {
+				this.onSelectedPortal(_poi);
+			}
+			origsetSelectedPOI.call(scope, _poi);
 		};
 	}
 
