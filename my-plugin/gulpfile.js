@@ -2,8 +2,9 @@ var ms = require('gulp-monkeyscript');
 var msProject = ms.createProject("package.json");
 
 var gulp = require('gulp');
-var gulpless = require('gulp-less');
+//var gulpless = require('gulp-less');
 var concat = require('gulp-concat');
+var strip = require('gulp-strip-comments');
 
 /**
  * LESS compile/merge task.
@@ -30,6 +31,7 @@ function buildTask(cb) {
 		'src/index.js',		// index at the end
 	])
 		.pipe(concat("script.user.js"))
+		.pipe(strip())
 		.pipe(msProject()) // append Tampermonkey header
 		.pipe(gulp.dest("dist/"));
     

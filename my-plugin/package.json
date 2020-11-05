@@ -1,7 +1,7 @@
 {
 	"name": "ingress-mission-fs-puzzle-helper",
-	"version": "0.1.0",
-	"description": "[0.1.0] FS Puzzle helper for Mission Editor",
+	"version": "0.1.1",
+	"description": "[0.1.1] FS Puzzle helper for Mission Editor",
 	"author": "Eccenux",
 	"license": "MIT",
 	"main": "index.js",
@@ -11,7 +11,9 @@
 			"category": "Misc",
 			"id": "ingress-mission-fs-puzzle-helper",
 			"namespace": "pl.enux.ingress",
-			"grant": ["none"],
+			"grant": [
+				"none"
+			],
 			"match": [
 				"https://missions.ingress.com/edit*"
 			]
@@ -25,6 +27,7 @@
 		"gulp": "4.0.2",
 		"gulp-concat": "2.6.1",
 		"gulp-less": "4.0.1",
+		"gulp-strip-comments": "2.5.2",
 		"gulp-monkeyscript": "file:../../gulp-monkeyscript"
 	}
 }
