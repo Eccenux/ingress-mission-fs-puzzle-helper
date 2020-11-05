@@ -1,5 +1,24 @@
 /* global angular AngularHelper Portal */
 
+const containerId = 'fsPuzzleHelper-container';
+
+const portalHtml = `
+	<div id="${containerId}" style="
+		display: grid;
+		grid-template-columns: max-content auto;
+		grid-gap: .5em;
+		padding: .5em 1em 0
+	">
+		<a class="copy" style="
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 30px;
+			color: #5afbea;
+		">FS puzzle 📋</a>
+		<input class="data" type="text" />
+	</div>
+`;
+
 /**
  * Main plugin class.
  */
@@ -19,13 +38,31 @@ class MyPlugin {
 			this.setupViews(scope);
 		});
 
-		// prepare input
+		// prepare HTML
 		let el = document.createElement('li');
-		this.input = document.createElement('input');
-		el.appendChild(this.input);
+		el.innerHTML = portalHtml;
 		let container = document.querySelector('ul.navbar-nav');
 		container.insertBefore(el, container.firstChild);
+
+		// prepare interactions
+		this.input = el.querySelector('.data');
+		let copyButton = el.querySelector('.copy');
+		copyButton.onclick = () => {
+			this.copyTextField(this.input);
+		};		
 	}
+
+	/**
+	 * Copy text field contents.
+	 * @param {Element|String} source Element or selector.
+	 */
+	copyTextField(source) {
+		if (typeof source === 'string') {
+			source = document.querySelector(source);
+		}
+		source.select();
+		document.execCommand("copy");
+	}	
 
 	/**
 	 * When portal was selected.

@@ -4,8 +4,8 @@
 // @id          ingress-mission-fs-puzzle-helper
 // @category    Misc
 // @namespace   pl.enux.ingress
-// @version     0.1.1
-// @description [0.1.1] FS Puzzle helper for Mission Editor
+// @version     0.2.0
+// @description [0.2.0] FS Puzzle helper for Mission Editor
 // @match       https://missions.ingress.com/edit*
 // @grant       none
 // ==/UserScript==
@@ -26,6 +26,25 @@ class AngularHelper {
 }
 
 
+const containerId = 'fsPuzzleHelper-container';
+
+const portalHtml = `
+	<div id="${containerId}" style="
+		display: grid;
+		grid-template-columns: max-content auto;
+		grid-gap: .5em;
+		padding: .5em 1em 0
+	">
+		<a class="copy" style="
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 30px;
+			color: #5afbea;
+		">FS puzzle 📋</a>
+		<input class="data" type="text" />
+	</div>
+`;
+
 class MyPlugin {
 	constructor(codeName) {
 		this.codeName = codeName;
@@ -42,11 +61,24 @@ class MyPlugin {
 		});
 
 		let el = document.createElement('li');
-		this.input = document.createElement('input');
-		el.appendChild(this.input);
+		el.innerHTML = portalHtml;
 		let container = document.querySelector('ul.navbar-nav');
 		container.insertBefore(el, container.firstChild);
+
+		this.input = el.querySelector('.data');
+		let copyButton = el.querySelector('.copy');
+		copyButton.onclick = () => {
+			this.copyTextField(this.input);
+		};		
 	}
+
+	copyTextField(source) {
+		if (typeof source === 'string') {
+			source = document.querySelector(source);
+		}
+		source.select();
+		document.execCommand("copy");
+	}	
 
 	onSelectedPortal(rawPortal) {
 		console.log(this.codeName, 'onSelectedPortal', rawPortal);
