@@ -7,7 +7,7 @@ See also: [my IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plug
 Installation
 ------------
 
-Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/ingress-mission-fs-puzzle-helper/raw/master/my-plugin/dist/script.user.js)**.
+Assuming you already have TamperMonkey just &rarr; **[install the script](https://github.com/Eccenux/ingress-mission-fs-puzzle-helper/raw/master/my-plugin/dist/script.user.js)**.
 
 Development
 ------------
