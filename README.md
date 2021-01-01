@@ -2,7 +2,7 @@
 
 Experimental FS Puzzle helper for Mission Editor.
 
-See also: [my other IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories).
+See also: [my IITC plugins](https://github.com/search?q=user%3AEccenux+iitc-plugin&type=Repositories).
 
 Installation
 ------------
